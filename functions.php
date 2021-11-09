@@ -62,3 +62,18 @@ function createTables($conn)
     $conn->exec($orderTable);
     $conn->exec($orderRowTable);
 }
+
+function fillTablesWithFakeData($conn)
+{
+    $userSql = "INSERT INTO user VALUES (1, 'mikko', 'salasana', 'Mikko', 'Mallikas', 'mikko@mail.com', 'katu 12', 'Helsinki', '00120')";
+    $categorySql = "INSERT INTO category VALUES (1, 'Kategoria1')";
+    $productSql = "INSERT INTO product VALUES (1, 'Frisbee', 'Brändi', 'Hieno kiekko', '12.90', 1, 'punainen', 5, 4, 3, 2)";
+    $orderSql = "INSERT INTO `order` VALUES (1, 1, 'ordered', '2021-11-09 12:00:00')";
+    $orderRowSql = "INSERT INTO order_row VALUES (1, 1, 1, 50)";
+
+    $conn->exec($userSql);
+    $conn->exec($categorySql);
+    $conn->exec($productSql);
+    $conn->exec($orderSql);
+    $conn->exec($orderRowSql);
+}
