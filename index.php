@@ -2,12 +2,11 @@
 
 require('headers.php');
 require('functions.php');
+require('Database.php');
 
 try {
-    $conn = new PDO('mysql:host=localhost;dbname=verkkopalveluprojekti', 'root', '');
-    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-
-    createTables($conn);
+    $db = Database::getInstance();
+    createTables($db->getConnection());
 } catch (Exception $e) {
     echo $e->getMessage();
 }
