@@ -9,7 +9,7 @@ require "../include/functions.php";
  */
 try {
     $db = getConnection();
-    responseAsJson($db, "SELECT * FROM product");
+    responseAsJson($db, "SELECT * FROM product", PDO::FETCH_ASSOC);
 } catch (Exception $e) {
     responseError($e);
 }

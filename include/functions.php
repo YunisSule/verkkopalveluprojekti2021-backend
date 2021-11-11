@@ -4,14 +4,16 @@
  * Echoes query response as JSON
  * @param PDO $connection Database connection
  * @param string $query SQL query
+ * @param int $fetchMethod PDO fetch method
  * @param array $parameters possible query parameters
  */
-function responseAsJson(PDO $connection, string $query, array $parameters = [])
+function responseAsJson(PDO $connection, string $query, int $fetchMethod, array $parameters = [])
 {
     $prepared = $connection->prepare($query);
     $prepared->execute($parameters);
     header('Content-Type: application/json; charset=utf-8');
-    echo json_encode($prepared->fetchAll(PDO::FETCH_ASSOC));
+    ob_clean();
+    echo json_encode($prepared->fetchAll($fetchMethod));
 }
 
 /**
@@ -22,6 +24,20 @@ function responseError(Exception $exception)
 {
     http_response_code(500);
     echo $exception;
+}
+
+/**
+ * @param PDO $connection Database connection
+ * @param string $query SQL query
+ * @param int $fetchMethod PDO fetch method
+ * @param array $parameters possible query parameters
+ * @return bool|array
+ */
+function getQueryResult(PDO $connection, string $query, int $fetchMethod, array $parameters = []): bool|array
+{
+    $prepared = $connection->prepare($query);
+    $prepared->execute($parameters);
+    return $prepared->fetchAll($fetchMethod);
 }
 
 /**

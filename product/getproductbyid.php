@@ -8,9 +8,14 @@ require "../include/functions.php";
  * Example: /product/getproductbyid.php?id=1
  */
 try {
-    $id = htmlspecialchars($_GET['id']);
     $db = getConnection();
-    responseAsJson($db, "SELECT * FROM product WHERE product_id=?", [$id]);
+    $id = htmlspecialchars($_GET['id']);
+
+    if (!is_numeric($id)) {
+        throw new Exception("Id must be a number");
+    }
+
+    responseAsJson($db, "SELECT * FROM product WHERE product_id=?", PDO::FETCH_ASSOC, [$id]);
 } catch (Exception $e) {
     responseError($e);
 }
