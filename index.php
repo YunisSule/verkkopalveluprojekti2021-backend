@@ -1,12 +1,11 @@
 <?php
 
-require('headers.php');
-require('functions.php');
-require('Database.php');
+require "include/headers.php";
+require "include/functions.php";
 
 try {
-    $db = Database::getInstance();
-    createTables($db->getConnection());
+    $db = getConnection();
+    createTables($db);
 } catch (Exception $e) {
     echo $e->getMessage();
 }
