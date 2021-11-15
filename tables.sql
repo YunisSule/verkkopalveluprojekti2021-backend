@@ -44,7 +44,7 @@ CREATE TABLE IF NOT EXISTS `order`
     state      enum ('ordered', 'shipped', 'completed') NOT NULL,
     order_date datetime                                 NOT NULL,
     PRIMARY KEY (order_id),
-    FOREIGN KEY (user_id) REFERENCES `user` (user_id)
+    FOREIGN KEY (user_id) REFERENCES `user` (user_id) ON DELETE CASCADE
 );
 
 CREATE TABLE IF NOT EXISTS `order_row`
@@ -55,7 +55,7 @@ CREATE TABLE IF NOT EXISTS `order_row`
     quantity   int NOT NULL,
     PRIMARY KEY (order_row),
     FOREIGN KEY (order_id) REFERENCES `order` (order_id) ON DELETE CASCADE,
-    FOREIGN KEY (product_id) REFERENCES `product` (product_id)
+    FOREIGN KEY (product_id) REFERENCES `product` (product_id) ON DELETE CASCADE
 );
 
 INSERT IGNORE INTO `user`
