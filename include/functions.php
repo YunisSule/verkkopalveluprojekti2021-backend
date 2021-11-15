@@ -12,8 +12,30 @@ function responseAsJson(PDO $connection, string $query, int $fetchMethod, array 
     $prepared = $connection->prepare($query);
     $prepared->execute($parameters);
     header('Content-Type: application/json; charset=utf-8');
-    ob_clean();
     echo json_encode($prepared->fetchAll($fetchMethod));
+}
+
+
+/**
+ * Echoes success or error string depending on query success
+ * @param PDO $connection Database connection
+ * @param string $query SQL query
+ * @param string $success Response string
+ * @param string $error Error string
+ * @param array $parameters possible query parameters
+ */
+function responseString(PDO $connection, string $query, string $success, string $error, array $parameters = [])
+{
+    $prepared = $connection->prepare($query);
+    header('Content-Type: application/json; charset=utf-8');
+
+    if ($prepared->execute($parameters)) {
+        $response = ["message" => $success];
+    } else {
+        $response = ["message" => $error];
+    }
+
+    echo json_encode($response);
 }
 
 /**
