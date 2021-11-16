@@ -34,6 +34,7 @@ CREATE TABLE IF NOT EXISTS `product`
     glide       int           NOT NULL,
     turn        int           NOT NULL,
     fade        int           NOT NULL,
+    FULLTEXT (name, brand, description, color),
     PRIMARY KEY (product_id),
     FOREIGN KEY (category_id) REFERENCES `category` (category_id)
 );
