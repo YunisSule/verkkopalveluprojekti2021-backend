@@ -37,7 +37,7 @@ try {
     // Get product rows with the random IDs
     foreach ($randomIdArray as $id) {
         $product = getQueryResult($db, "SELECT * FROM product WHERE product_id = ?", PDO::FETCH_ASSOC, [$id]);
-        array_push($result, $product);
+        array_push($result, $product[0]);
     }
 
     header('Content-Type: application/json; charset=utf-8');
