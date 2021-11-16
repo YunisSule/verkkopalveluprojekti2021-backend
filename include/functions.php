@@ -11,6 +11,7 @@ function responseAsJson(PDO $connection, string $query, int $fetchMethod, array 
 {
     $prepared = $connection->prepare($query);
     $prepared->execute($parameters);
+
     header('Content-Type: application/json; charset=utf-8');
     echo json_encode($prepared->fetchAll($fetchMethod));
 }
@@ -27,7 +28,6 @@ function responseAsJson(PDO $connection, string $query, int $fetchMethod, array 
 function responseString(PDO $connection, string $query, string $success, string $error, array $parameters = [])
 {
     $prepared = $connection->prepare($query);
-    header('Content-Type: application/json; charset=utf-8');
 
     if ($prepared->execute($parameters)) {
         $response = ["message" => $success];
@@ -35,6 +35,7 @@ function responseString(PDO $connection, string $query, string $success, string 
         $response = ["message" => $error];
     }
 
+    header('Content-Type: application/json; charset=utf-8');
     echo json_encode($response);
 }
 

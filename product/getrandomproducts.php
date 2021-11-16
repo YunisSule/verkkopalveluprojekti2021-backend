@@ -9,7 +9,7 @@ require "../include/functions.php";
  */
 try {
     $db = getConnection();
-    $count = htmlspecialchars($_GET['count']);
+    $count = filter_var($_GET['count'], FILTER_SANITIZE_NUMBER_INT);
 
     if (!is_numeric($count)) {
         throw new Exception("Count must be a number");
@@ -40,6 +40,7 @@ try {
         array_push($result, $product);
     }
 
+    header('Content-Type: application/json; charset=utf-8');
     echo json_encode($result);
 } catch (Exception $e) {
     responseError($e);
