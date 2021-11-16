@@ -29,6 +29,7 @@ CREATE TABLE IF NOT EXISTS `product`
     price       decimal(6, 2) NOT NULL,
     category_id int           NOT NULL,
     color       varchar(255)  NOT NULL,
+    stock       int           NOT NULL DEFAULT 0,
     speed       int           NOT NULL,
     glide       int           NOT NULL,
     turn        int           NOT NULL,
@@ -63,11 +64,11 @@ VALUES (1, false, 'mikko', 'salasana', 'Mikko', 'Mallikas', 'mikko@mail.com', 'k
 INSERT IGNORE INTO `category`
 VALUES (1, 'Kategoria');
 INSERT IGNORE INTO `product`
-VALUES (1, 'Frisbee', 'Valmistaja', 'Hieno kiekko', 11.90, 1, 'musta', 8, 4, 2, 1);
+VALUES (1, 'Frisbee', 'Valmistaja', 'Hieno kiekko', 11.90, 1, 'musta', 100, 8, 4, 2, 1);
 INSERT IGNORE INTO `product`
-VALUES (2, 'Frisbee2', 'Valmistaja2', 'Hieno kiekko2', 15.90, 1, 'punainen', 5, 2, 7, 4);
+VALUES (2, 'Frisbee2', 'Valmistaja2', 'Hieno kiekko2', 15.90, 1, 'punainen', 50, 5, 2, 7, 4);
 INSERT IGNORE INTO `product`
-VALUES (3, 'Frisbee3', 'Valmistaja3', 'Hieno kiekko3', 13.90, 1, 'keltainen', 7, 1, 3, 3);
+VALUES (3, 'Frisbee3', 'Valmistaja3', 'Hieno kiekko3', 13.90, 1, 'keltainen', 120, 7, 1, 3, 3);
 INSERT IGNORE INTO `order`
 VALUES (1, 1, 'ordered', '2021-11-09 12:00:00');
 INSERT IGNORE INTO `order_row`
