@@ -25,7 +25,7 @@ CREATE TABLE IF NOT EXISTS `product`
     product_id  int AUTO_INCREMENT,
     name        varchar(255)  NOT NULL,
     brand       varchar(255)  NOT NULL,
-    description varchar(255)  NOT NULL,
+    description MEDIUMTEXT    NOT NULL,
     image_path  varchar(255)  NOT NULL,
     price       decimal(6, 2) NOT NULL,
     category_id int           NOT NULL,
@@ -64,7 +64,9 @@ CREATE TABLE IF NOT EXISTS `order_row`
 INSERT IGNORE INTO `user`
 VALUES (1, false, 'mikko', 'salasana', 'Mikko', 'Mallikas', 'mikko@mail.com', 'katu 12', 'Helsinki', '00120');
 INSERT IGNORE INTO `category`
-VALUES (1, 'Kategoria');
+VALUES (1, 'Kiekot');
+INSERT IGNORE INTO `category`
+VALUES (2, 'Kassit');
 INSERT IGNORE INTO `product`
 VALUES (1, 'Frisbee', 'Valmistaja', 'Hieno kiekko', '/images/placeholder.jpg', 11.90, 1, 'musta', 100, 8, 4, 2, 1);
 INSERT IGNORE INTO `product`
