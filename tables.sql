@@ -97,15 +97,15 @@ VALUES (4, 'ULTRIUM JOKERI', 'PRODISCUS',
 INSERT IGNORE INTO `product`
 VALUES (5, 'K3 HARD REKO', 'KASTAPLAST',
         'Reko has a comfortable rounded profile and a smooth bead, which will fit most players’ hands. Easy to grip and easy to throw. It features a strengthened shoulder which adds a little extra durability compared to the average putter. Reko is Swedish for good, reliable or decent. The world needs more Reko.',
-        'k3hreko5.jpgs', 11.90, 1, 'pinkki', 13, 3, 3, 0, 1);
+        'k3hreko5.jpeg', 11.90, 1, 'pinkki', 13, 3, 3, 0, 1);
 INSERT IGNORE INTO `product`
 VALUES (6, 'K1 SOFT REKO', 'KASTAPLAST',
         'Reko has a comfortable rounded profile and a smooth bead, which will fit most players’ hands. Easy to grip and easy to throw. It features a strengthened shoulder which adds a little extra durability compared to the average putter. Reko is Swedish for good, reliable or decent. The world needs more Reko.',
-        'k1sreko6.jpgs', 16.90, 1, 'valkoinen', 43, 3, 3, 0, 1);
+        'k1sreko6.jpeg', 16.90, 1, 'valkoinen', 43, 3, 3, 0, 1);
 INSERT IGNORE INTO `product`
 VALUES (7, 'SUPERGLOW WIZARD', 'GATEWAY',
         'Gatewayn glow-muoviset kiekot sopivat loistavasti yöpelaamiseen, mutta kestävyytensä ja ominaisuuksiensa ansiosta ne ovat haluttuja myös normaaliin päiväkäyttöön. Wizard on erittäin monipuolinen putteri, jolla pärjäät myös tuulisemmissa olosuhteissa. Sen reunan alaosassa on bead, joka tekee siitä muita Gatewayn puttereita vakaamman.',
-        'glwsswiza7.jpgs', 16.90, 1, 'valkoinen', 34, 2, 2, 0, 2);
+        'glwsswiza7.png', 16.90, 1, 'valkoinen', 34, 2, 2, 0, 2);
 INSERT IGNORE INTO `product`
 VALUES (8, 'ROYAL SENSE FAITH', 'LATITUDE 64',
         'Faith on pyöreäreunainen korkeahkon profiilin putteri, jonka lentoradan kerrotaan olevan suora. Sopii erinomaisesti sekä puttaamiseen että lähestymisiin.',
@@ -131,14 +131,14 @@ VALUES (12, 'FUZION-X MAVERICK', 'DYNAMIC DISCS',
 INSERT IGNORE INTO `product`
 VALUES (13, '500 H2 V2', 'PRODIGY DISC',
         'H2 V2 on uusi versio suositusta H2-kiekosta. H2 V2 on ylivakaa keskimatkan draiveri. Siinä on edeltäjäänsä verrattuna hieman matalampi reunan syvyys ja terävämpi ulkoreuna. Näiden uudistusten myötä uusi H2 V2 on nopeampi ja liitää pitkälle.',
-        '5sh2v13.jpgs', 17.90, 1, 'sininen', 22, 10, 5, 0, 2);
+        '5sh2v13.jpeg', 17.90, 1, 'sininen', 22, 10, 5, 0, 2);
 INSERT IGNORE INTO `product`
 VALUES (14, '750 H2 V2', 'PRODIGY DISC',
         'H2 V2 on uusi versio suositusta H2-kiekosta. H2 V2 on ylivakaa keskimatkan draiveri. Siinä on edeltäjäänsä verrattuna hieman matalampi reunan syvyys ja terävämpi ulkoreuna. Näiden uudistusten myötä uusi H2 V2 on nopeampi ja liitää pitkälle.',
         '75sh2v14.png', 18.90, 1, 'oranssi', 7, 10, 5, 0, 2);
 INSERT IGNORE INTO `product`
 VALUES (15, 'BIG Z ANAX', 'DISCRAFT',
-        'A strong, overstable fairway driver with the sharp rim of a distance driver but the comfort, thinner rim, and precision of a fairway driver. The Anax has quickly become a staple in player\'s bags across the globe. Stamped with Paul\'s standard stock design, these discs are timeless.',
+        "A strong, overstable fairway driver with the sharp rim of a distance driver but the comfort, thinner rim, and precision of a fairway driver. The Anax has quickly become a staple in player\'s bags across the globe. Stamped with Paul\'s standard stock design, these discs are timeless.",
         'bizanax15.png', 23.90, 1, 'vihreä', 2, 10, 6, 0, 3);
 INSERT IGNORE INTO `product`
 VALUES (16, 'STAR DESTROYER', 'INNOVA',
@@ -158,11 +158,11 @@ VALUES (18, 'SHUTTLE BACKPACK', 'MVP DISC SPORTS',
 INSERT IGNORE INTO `product`
 VALUES (19, 'TREENIKASSI', 'PRODIGY DISC',
         'Treenikassi Practice Bag V2 on loistava ratkaisu kiekkojen kuljetukseen ja säilytykseen. Laukkuun mahtuu 30-45 kiekkoa, ja ne on helppo pitää järjestyksessä siirrettävien väliseinien avulla. Practice Bag sopii erinomaisesti esimerkiksi koulujen ja seurojen koulutuskäyttöön tai kenelle tahansa aktiiviharrastajalle. Tässä vuodelle 2020 parannellussa versiossa on materiaalina Nylon Ripstop -kangas, joka on entistä kestävämpää ja hylkii myös vettä. Practice Bag V2 -kassissa on laukun molempiin päihin lisätty taskut. Toisessa päässä laukkua on nyt juomapullotasku, ja toisessa magneettisella lipalla varustettu tarviketasku.',
-        'prabgprv220_prod-v3navy19.jpq', 35.00, 2, 'sininen', 34, NULL, NULL, NULL, NULL);
+        'prabgprv220_prod-v3navy19.jpg', 35.00, 2, 'sininen', 34, NULL, NULL, NULL, NULL);
 INSERT IGNORE INTO `product`
 VALUES (20, 'DG LUXURY BACKPACK E4', 'LATITUDE 64',
         'DG Luxury BackPack on tehty kestävästä nailonkankaasta. Repun etutasku on suunniteltu tasapainottamaan reppua ja siten sen pitäisi pysyä hyvin pystyssä. Kiekko-osioon mahtuu noin 20 kiekkoa, mutta jos taskutkin täyttää kiekoilla vetää reppu noin 30-35 kiekkoa. Latituden Luxury E4 -reppubägillä on takuu koskien valmistusvikoja ja materiaalivirheitä. Takuu ei korvaa tilanteissa, joissa reppua on käytetty tahallisesti väärin, eikä se myöskään korvaa normaalista kulumisesta johtuvia vikoja.',
-        'luxbaglae4_la-r-b20.jpq', 199.00, 2, 'punainen', 22, NULL, NULL, NULL, NULL);
+        'luxbaglae4_la-r-b20.jpg', 199.00, 2, 'punainen', 22, NULL, NULL, NULL, NULL);
 INSERT IGNORE INTO `product`
 VALUES (21, 'KYLMÄLAUKKU', 'ZÜCA',
         'The CoolZÜCA Cooler has been designed to complement the ZÜCA rolling product line by fitting neatly on top of the seat and attaching securely to the telescoping handle.',
