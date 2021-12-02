@@ -46,7 +46,8 @@ function responseString(PDO $connection, string $query, string $success, string 
 function responseError(Exception $exception)
 {
     http_response_code(500);
-    echo $exception;
+    header('Content-Type: application/json; charset=utf-8');
+    echo json_encode(["error" => $exception->getMessage()]);
 }
 
 /**

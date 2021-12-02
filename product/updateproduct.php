@@ -11,6 +11,10 @@ try {
     $db = getConnection();
     $body = json_decode(file_get_contents('php://input'));
 
+    if (!$body) {
+        throw new Exception("Pyynnön runko ei voi olla tyhjä!");
+    }
+
     $productId = filter_var($body->product_id, FILTER_SANITIZE_STRING);
     $name = filter_var($body->name, FILTER_SANITIZE_STRING);
     $brand = filter_var($body->brand, FILTER_SANITIZE_STRING);

@@ -10,6 +10,10 @@ try {
     $db = getConnection();
     $body = json_decode(file_get_contents('php://input'));
 
+    if (!$body) {
+        throw new Exception("Pyynnön runko ei voi olla tyhjä!");
+    }
+
     $username = filter_var($body->username, FILTER_SANITIZE_STRING);
     $password = password_hash(filter_var($body->password, FILTER_SANITIZE_STRING), PASSWORD_DEFAULT);
     $firstName = filter_var($body->firstname, FILTER_SANITIZE_STRING);
