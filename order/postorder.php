@@ -18,9 +18,7 @@ try {
     $order_id = random_int(1,99999);
     $user_id = filter_var($_GET['user_id'],FILTER_SANITIZE_NUMBER_INT);
     $state = 'ordered';
-    $product_id = filter_var($input->product_id, FILTER_SANITIZE_NUMBER_INT);
-    $price = filter_var($input->price, FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION);
-    $amount = filter_var($input->amount, FILTER_SANITIZE_NUMBER_INT);
+    
     
    
    
@@ -30,15 +28,20 @@ try {
     $sql = 'INSERT INTO `order` VALUES (?, ?, ?, CURRENT_TIMESTAMP())';
     $params = [$order_id, $user_id, $state];
 
+    responseString($db, $sql, "Tilaus lisätty", "Virhe. Tilausta ei lisätty", $params);
     
     // Adds ordered products id and amount to order_row table
     
-    $sql1 = 'INSERT INTO `order_row` VALUES (null, ?, ?, ?)';
-    $params1 = [$order_id, $product_id, $amount];
+    foreach ($input as $product) {
+        $sql1 = 'INSERT INTO `order_row` VALUES (null, ?, ?, ?)';
+        $params1 = [$order_id, $product->product_id, $product->amount];
+        responseString($db, $sql1, "Tilaus lisätty", "Virhe. Tilausta ei lisätty", $params1);
+    }
+    
     
 
-    responseString($db, $sql, "Tilaus lisätty", "Virhe. Tilausta ei lisätty", $params);
-    responseString($db, $sql1, "Tilaus lisätty", "Virhe. Tilausta ei lisätty", $params1);
+   
+    
 } catch (Exception $e) {
     responseError($e);
 }
