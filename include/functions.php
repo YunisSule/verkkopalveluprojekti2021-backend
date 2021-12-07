@@ -82,3 +82,30 @@ function createTables(PDO $connection)
     $sql = file_get_contents('./tables.sql');
     $connection->exec($sql);
 }
+
+/**
+ * Checks wether or not the user is admin
+ * @param int $user_id
+ */
+
+function checkPermissions($user_id) {
+    $pdo = getConnection();
+
+    try {
+        $row = getQueryResult($pdo, "SELECT is_admin FROM user WHERE user_id = ?", PDO::FETCH_ASSOC, [$user_id]);
+    
+        foreach($row as $rows) {
+            $is_admin = $rows['is_admin'];
+        }
+        if($is_admin == 1) {
+            $authorized = "true";
+        } else {
+            $authorized = "false";
+        }
+    
+        return $authorized;
+    } catch (Exception $e) {
+        echo $e->getMessage();
+    }
+    
+} 

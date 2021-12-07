@@ -2,11 +2,19 @@
 
 require "../include/headers.php";
 require "../include/functions.php";
+// require "../auth/login.php";
 
 /**
  * Post product. Takes data from JSON body.
  * Example: /product/postproduct.php
  */
+
+// if (checkPermissions($user_id) == "false") {
+//     header("HTTP/1.1 403 Forbidden");
+//     echo '{"error": "No permissions."}';
+//     exit;
+// }
+
 try {
     $db = getConnection();
     $body = json_decode(file_get_contents('php://input'));

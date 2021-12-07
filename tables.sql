@@ -61,10 +61,9 @@ CREATE TABLE IF NOT EXISTS `order_row`
     FOREIGN KEY (product_id) REFERENCES `product` (product_id) ON DELETE CASCADE
 );
 
---salasana:salasana
+/*salasana:salasana*/
 INSERT IGNORE INTO `user`
-VALUES (1, false, 'mikko', '$2a$12$.J3RoO/PI0X2YJppzY1OvuNpiVJ37VWKLh655B0edfkjPdbf8n5Ei
-', 'Mikko', 'Mallikas', 'mikko@mail.com', 'katu 12', 'Helsinki', '00120');
+VALUES (1, false, 'mikko', '$2a$12$.J3RoO/PI0X2YJppzY1OvuNpiVJ37VWKLh655B0edfkjPdbf8n5Ei', 'Mikko', 'Mallikas', 'mikko@mail.com', 'katu 12', 'Helsinki', '00120');
 INSERT IGNORE INTO `category`
 VALUES (1, 'Kiekot');
 INSERT IGNORE INTO `category`
