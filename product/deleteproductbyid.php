@@ -20,7 +20,7 @@ try {
     $id = filter_var($_GET['id'], FILTER_SANITIZE_NUMBER_INT);
 
     if (!is_numeric($id)) {
-        throw new Exception("Id must be a number");
+        throw new Exception("ID:n täytyy olla numero!");
     }
 
     responseAsJson($db, "DELETE FROM product WHERE product_id=? RETURNING product_id", PDO::FETCH_ASSOC, [$id]);

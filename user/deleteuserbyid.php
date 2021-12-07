@@ -4,8 +4,8 @@ require "../include/headers.php";
 require "../include/functions.php";
 
 /**
- * Get product's stock count
- * Example: /product/getproductstock.php?id=1
+ * Delete user by ID
+ * Example: /product/deleteuserbyid.php?id=1
  */
 try {
     $db = getConnection();
@@ -15,7 +15,7 @@ try {
         throw new Exception("ID:n täytyy olla numero!");
     }
 
-    responseAsJson($db, "SELECT stock FROM product WHERE product_id=?", PDO::FETCH_ASSOC, [$id]);
+    responseAsJson($db, "DELETE FROM user WHERE user_id=? RETURNING user_id", PDO::FETCH_ASSOC, [$id]);
 } catch (Exception $e) {
     responseError($e);
 }

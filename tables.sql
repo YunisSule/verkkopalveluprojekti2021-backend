@@ -42,9 +42,10 @@ CREATE TABLE IF NOT EXISTS `product`
 
 CREATE TABLE IF NOT EXISTS `order`
 (
-    order_id   int AUTO_INCREMENT,
+    order_id   int,
     user_id    int                                      NOT NULL,
     state      enum ('ordered', 'shipped', 'completed') NOT NULL,
+    payment_method enum ('email', 'letter') NOT NULL,
     order_date datetime                                 NOT NULL,
     PRIMARY KEY (order_id),
     FOREIGN KEY (user_id) REFERENCES `user` (user_id) ON DELETE CASCADE

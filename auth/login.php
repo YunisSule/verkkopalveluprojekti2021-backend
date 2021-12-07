@@ -46,27 +46,3 @@ try {
 } catch (Exception $e) {
     responseError($e);
 }
-
-
-
- // try {
-//     session_start();
-
-//     $pdo = getConnection();
-//     $body = json_decode(file_get_contents('php://input'));
-
-//     $username = filter_var($body->username, FILTER_SANITIZE_STRING);
-//     $password = filter_var($body->password, FILTER_SANITIZE_STRING);
-
-//     $hashedPassword = getQueryResult($pdo, "SELECT password FROM user WHERE username = ?", PDO::FETCH_COLUMN, [$username]);
-//     if ($username && password_verify($password, $hashedPassword[0])) {
-//         $_SESSION['username'] = $username;
-//         $response = ["success" => true];
-//     } else {
-//         $response = ["success" => false];
-//     }
-
-//     echo json_encode($response);
-// } catch (Exception $e) {
-//     responseError($e);
-// }

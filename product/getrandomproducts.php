@@ -12,7 +12,7 @@ try {
     $count = filter_var($_GET['count'], FILTER_SANITIZE_NUMBER_INT);
 
     if (!is_numeric($count)) {
-        throw new Exception("Count must be a number");
+        throw new Exception("Countin täytyy olla numero!");
     }
 
     $productIdArray = getQueryResult($db, "SELECT product_id FROM product", PDO::FETCH_COLUMN);
