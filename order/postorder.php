@@ -18,6 +18,8 @@ try {
     $order_id = random_int(1,99999);
     $user_id = filter_var($_GET['user_id'],FILTER_SANITIZE_NUMBER_INT);
     $state = 'ordered';
+    $cart = $input->cart;
+    $form = $input->form;
     
     
    
@@ -25,14 +27,14 @@ try {
     
     // Adds order to order table
 
-    $sql = 'INSERT INTO `order` VALUES (?, ?, ?, CURRENT_TIMESTAMP())';
-    $params = [$order_id, $user_id, $state];
+    $sql = 'INSERT INTO `order` VALUES (?, ?, ?, ?, CURRENT_TIMESTAMP())';
+    $params = [$order_id, $user_id, $state, $form->radio1];
 
     responseString($db, $sql, "Tilaus lisätty", "Virhe. Tilausta ei lisätty", $params);
     
     // Adds ordered products id and amount to order_row table
     
-    foreach ($input as $product) {
+    foreach ($cart as $product) {
         $sql1 = 'INSERT INTO `order_row` VALUES (null, ?, ?, ?)';
         $params1 = [$order_id, $product->product_id, $product->amount];
         responseString($db, $sql1, "Tilaus lisätty", "Virhe. Tilausta ei lisätty", $params1);
