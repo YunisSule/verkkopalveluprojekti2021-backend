@@ -57,24 +57,37 @@ CREATE TABLE IF NOT EXISTS `order_row`
     order_id   int NOT NULL,
     product_id int NOT NULL,
     quantity   int NOT NULL,
-    PRIMARY KEY (order_row),
+    PRIMARY KEY (order_row, order_id),
     FOREIGN KEY (order_id) REFERENCES `order` (order_id) ON DELETE CASCADE,
     FOREIGN KEY (product_id) REFERENCES `product` (product_id) ON DELETE CASCADE
 );
 
 /*salasana:salasana*/
 INSERT IGNORE INTO `user`
-VALUES (1, false, 'mikko', '$2a$12$.J3RoO/PI0X2YJppzY1OvuNpiVJ37VWKLh655B0edfkjPdbf8n5Ei', 'Mikko', 'Mallikas', 'mikko@mail.com', 'katu 12', 'Helsinki', '00120');
+VALUES (1, false, 'mikko', '$2a$12$.J3RoO/PI0X2YJppzY1OvuNpiVJ37VWKLh655B0edfkjPdbf8n5Ei', 'Mikko', 'Mallikas',
+        'mikko@mail.com', 'katu 12', 'Helsinki', '00120');
 INSERT IGNORE INTO `category`
 VALUES (1, 'Kiekot');
 INSERT IGNORE INTO `category`
 VALUES (2, 'Kassit');
 INSERT IGNORE INTO `order`
-VALUES (1, 1, 'ordered', '2021-11-09 12:00:00');
+VALUES (1, 1, 'ordered', 'email', '2021-11-09 12:00:00');
 INSERT IGNORE INTO `order_row`
 VALUES (1, 1, 1, 50);
 INSERT IGNORE INTO `order_row`
 VALUES (2, 1, 2, 15);
+INSERT IGNORE INTO `order`
+VALUES (2, 1, 'shipped', 'email', '2021-10-02 13:00:00');
+INSERT IGNORE INTO `order_row`
+VALUES (1, 2, 3, 5);
+INSERT IGNORE INTO `order_row`
+VALUES (2, 2, 4, 10);
+INSERT IGNORE INTO `order`
+VALUES (3, 1, 'completed', 'email', '2021-10-05 13:00:00');
+INSERT IGNORE INTO `order_row`
+VALUES (1, 3, 7, 21);
+INSERT IGNORE INTO `order_row`
+VALUES (2, 3, 2, 50);
 
 -- PRODUCTS
 
