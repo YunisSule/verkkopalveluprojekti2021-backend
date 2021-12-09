@@ -42,11 +42,11 @@ CREATE TABLE IF NOT EXISTS `product`
 
 CREATE TABLE IF NOT EXISTS `order`
 (
-    order_id   int,
-    user_id    int                                      NOT NULL,
-    state      enum ('ordered', 'shipped', 'completed') NOT NULL,
-    payment_method enum ('email', 'letter') NOT NULL,
-    order_date datetime                                 NOT NULL,
+    order_id       int,
+    user_id        int                                      NOT NULL,
+    state          enum ('ordered', 'shipped', 'completed') NOT NULL,
+    payment_method enum ('email', 'letter')                 NOT NULL,
+    order_date     datetime                                 NOT NULL,
     PRIMARY KEY (order_id),
     FOREIGN KEY (user_id) REFERENCES `user` (user_id) ON DELETE CASCADE
 );
@@ -71,19 +71,19 @@ VALUES (1, 'Kiekot');
 INSERT IGNORE INTO `category`
 VALUES (2, 'Kassit');
 INSERT IGNORE INTO `order`
-VALUES (1, 1, 'ordered', 'email', '2021-11-09 12:00:00');
+VALUES (1, 1, 'ordered', 'letter', '2021-11-09 12:00:00');
+INSERT IGNORE INTO `order`
+VALUES (2, 1, 'shipped', 'email', '2021-10-02 13:00:00');
+INSERT IGNORE INTO `order`
+VALUES (3, 1, 'completed', 'email', '2021-10-05 13:00:00');
 INSERT IGNORE INTO `order_row`
 VALUES (1, 1, 1, 50);
 INSERT IGNORE INTO `order_row`
 VALUES (2, 1, 2, 15);
-INSERT IGNORE INTO `order`
-VALUES (2, 1, 'shipped', 'email', '2021-10-02 13:00:00');
 INSERT IGNORE INTO `order_row`
 VALUES (1, 2, 3, 5);
 INSERT IGNORE INTO `order_row`
 VALUES (2, 2, 4, 10);
-INSERT IGNORE INTO `order`
-VALUES (3, 1, 'completed', 'email', '2021-10-05 13:00:00');
 INSERT IGNORE INTO `order_row`
 VALUES (1, 3, 7, 21);
 INSERT IGNORE INTO `order_row`
