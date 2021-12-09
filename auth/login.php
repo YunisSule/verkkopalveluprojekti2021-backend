@@ -1,4 +1,5 @@
 <?php
+session_start();
 
 require_once "../include/headers.php";
 require_once "../include/functions.php";
@@ -7,42 +8,39 @@ require_once "../include/functions.php";
  * Login with existing user
  */
 
-if (session_status() === PHP_SESSION_NONE) {
-    session_start();
+// if (isset($_SESSION["email"]) && isset($_SESSION["pwd"])) {
+//     $_SERVER['PHP_AUTH_USER'] = $_SESSION["email"];
+//     $_SERVER["PHP_AUTH_PW"] = $_SESSION["pwd"];
+// }
+
+
+
+$pdo = getConnection();
+
+if (!isset($_SERVER['PHP_AUTH_USER']) || !isset($_SERVER['PHP_AUTH_PW'])) {
+    header("HTTP/1.1 401 Unauthorized");
+    echo '{"error": "Authentication failed."}';
+    exit;
+} else {
+    $email = filter_var($_SERVER['PHP_AUTH_USER'], FILTER_SANITIZE_EMAIL);
+    $password = filter_var($_SERVER["PHP_AUTH_PW"], FILTER_SANITIZE_STRING);
 }
 
-try {
-    
-    $_SESSION["token"] = bin2hex(openssl_random_pseudo_bytes(16));
+$fetchuser = getQueryResult($pdo, "SELECT * FROM user WHERE email = ?", PDO::FETCH_ASSOC, [$email]);
 
-    $pdo = getConnection();
-    //$body = json_decode(file_get_contents('php://input'));
-
-    if( !isset($_SERVER['PHP_AUTH_USER']) || !isset($_SERVER['PHP_AUTH_PW'])){
-        header("HTTP/1.1 401 Unauthorized");
-        echo '{"error": "Authentication failed."}';
-        exit;
-    } else {
-        $email = filter_var($_SERVER['PHP_AUTH_USER'], FILTER_SANITIZE_EMAIL);
-        $password = filter_var($_SERVER["PHP_AUTH_PW"], FILTER_SANITIZE_STRING);
-    }
-
-    $fetchuser = getQueryResult($pdo, "SELECT * FROM user WHERE email = ?", PDO::FETCH_ASSOC, [$email]);
-
-    foreach($fetchuser as $row) {
-        $hashedPassword = $row['password'];
-        $username = $row['username'];
-    }
-
-    if ($email && password_verify($password, $hashedPassword)) {
-        $user_id = $row['user_id'];
-    } else {
-        header('HTTP/1.1 401 Unauthorized');
-        echo '{"error": "Invalid username or password."}';
-        exit;
-    }
-    $_SESSION["user_id"] = $user_id;
-    echo json_encode(["token" => $_SESSION["token"]]);
-} catch (Exception $e) {
-    responseError($e);
+foreach ($fetchuser as $row) {
+    $hashedPassword = $row['password'];
+    $username = $row['username'];
 }
+
+if ($email && password_verify($password, $hashedPassword)) {
+    $user_id = $row['user_id'];
+} else {
+    header('HTTP/1.1 401 Unauthorized');
+    echo '{"error": "Invalid username or password."}';
+    exit;
+}
+$_SESSION["token"] = bin2hex(openssl_random_pseudo_bytes(16));
+$_SESSION["email"] = $email;
+$_SESSION["pwd"] = $password;
+$_SESSION["id"] = $user_id;

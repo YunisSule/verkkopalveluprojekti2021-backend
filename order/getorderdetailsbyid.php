@@ -1,5 +1,5 @@
 <?php
-
+session_start();
 require "../include/headers.php";
 require "../include/functions.php";
 
@@ -7,6 +7,12 @@ require "../include/functions.php";
  * Get all orders of a user
  * Example: /order/getorderdetailsbyid.php?id=1
  */
+
+if (!isset($_SESSION['id']) || checkPermissions($_SESSION['id']) == "false") {
+    header("HTTP/1.1 403 Forbidden");
+    echo json_encode(["error" => "No permissions."]);
+    exit;
+}
 
 try {
     $db = getConnection();

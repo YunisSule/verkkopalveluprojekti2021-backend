@@ -1,19 +1,19 @@
 <?php
+session_start();
 
 require "../include/headers.php";
 require "../include/functions.php";
-require "../auth/login.php";
 
 /**
  * Delete product by ID
  * Example: /product/deleteproductbyid.php?id=1
  */
 
-// if (checkPermissions($user_id) == "false") {
-//     header("HTTP/1.1 403 Forbidden");
-//     echo '{"error": "No permissions."}';
-//     exit;
-// }
+if (!isset($_SESSION['id']) || checkPermissions($_SESSION['id']) == "false") {
+    header("HTTP/1.1 403 Forbidden");
+    echo json_encode(["error" => "No permissions."]);
+    exit;
+}
 
 try {
     $db = getConnection();
