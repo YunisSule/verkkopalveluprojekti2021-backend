@@ -109,4 +109,18 @@ function checkPermissions($user_id) {
         echo $e->getMessage();
     }
     
-} 
+}
+
+function isLoggedIn() {
+    if (session_status() === PHP_SESSION_NONE) {
+        session_start();
+    }
+
+    if (isset($_SESSION['id'])) {
+        $logged = "true";
+    } else {
+        $logged = "false";
+    }
+
+    return $logged;
+}

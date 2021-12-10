@@ -1,5 +1,6 @@
 <?php
 session_start();
+
 require "../include/headers.php";
 require "../include/functions.php";
 

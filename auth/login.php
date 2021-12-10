@@ -40,6 +40,7 @@ if ($email && password_verify($password, $hashedPassword)) {
     echo '{"error": "Invalid username or password."}';
     exit;
 }
+echo json_encode(['user_id' => $user_id]);
 $_SESSION["token"] = bin2hex(openssl_random_pseudo_bytes(16));
 $_SESSION["email"] = $email;
 $_SESSION["pwd"] = $password;

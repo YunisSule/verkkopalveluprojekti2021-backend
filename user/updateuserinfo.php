@@ -1,4 +1,5 @@
 <?php
+session_start();
 require "../include/headers.php";
 require "../include/functions.php";
 
@@ -6,6 +7,12 @@ require "../include/functions.php";
  * Update user info: firstname, lastname, email, address, city and postal code by ID. Takes data from JSON body.
  * Example: /user/updateuserinfo.php?id=1
  */
+
+if (isLoggedIn() == "false") {
+    header("HTTP/1.1 403 Forbidden");
+    echo json_encode(["error" => "Not logged in."]);
+    exit;
+}
 
 $input = json_decode(file_get_contents('php://input'));
 $id = filter_var($_GET['id'],FILTER_SANITIZE_NUMBER_INT);
