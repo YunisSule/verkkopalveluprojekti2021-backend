@@ -9,9 +9,9 @@ require "../include/functions.php";
  * Example: /order/getorderdetailsbyid.php?id=1
  */
 
-if (!isset($_SESSION['id']) || checkPermissions($_SESSION['id']) == "false") {
+if (isLoggedIn() == "false") {
     header("HTTP/1.1 403 Forbidden");
-    echo json_encode(["error" => "No permissions."]);
+    echo json_encode(["error" => "Not logged in."]);
     exit;
 }
 
