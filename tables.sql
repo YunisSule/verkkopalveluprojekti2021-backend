@@ -28,7 +28,7 @@ CREATE TABLE IF NOT EXISTS `product`
     description MEDIUMTEXT    NOT NULL,
     image_path  varchar(255)  NOT NULL,
     price       decimal(6, 2) NOT NULL,
-    category_id int           NOT NULL,
+    category_id int,
     color       varchar(255)  NOT NULL,
     stock       int           NOT NULL,
     speed       int,
@@ -37,7 +37,7 @@ CREATE TABLE IF NOT EXISTS `product`
     fade        int,
     FULLTEXT (name, brand, description, color),
     PRIMARY KEY (product_id),
-    FOREIGN KEY (category_id) REFERENCES `category` (category_id)
+    FOREIGN KEY (category_id) REFERENCES `category` (category_id) ON DELETE SET NULL
 );
 
 CREATE TABLE IF NOT EXISTS `order`
