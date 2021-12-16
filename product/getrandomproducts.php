@@ -28,8 +28,11 @@ try {
     // use rand to generate random product IDs between min and max
     while (sizeof($randomIdArray) != $count) {
         $num = rand($min, $max);
-        if (in_array($num, $randomIdArray)) continue;
-        else array_push($randomIdArray, $num);
+        if (in_array($num, $randomIdArray)) {
+            continue;
+        } else if (in_array($num, $productIdArray)) {
+            $randomIdArray[] = $num;
+        }
     }
 
     $result = array();
@@ -37,7 +40,7 @@ try {
     // Get product rows with the random IDs
     foreach ($randomIdArray as $id) {
         $product = getQueryResult($db, "SELECT * FROM product WHERE product_id = ?", PDO::FETCH_ASSOC, [$id]);
-        array_push($result, $product[0]);
+        $result[] = $product[0];
     }
 
     header('Content-Type: application/json; charset=utf-8');
