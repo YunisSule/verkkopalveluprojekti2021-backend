@@ -3,7 +3,15 @@ require "../include/headers.php";
 require "../include/functions.php";
 
 if (isLoggedIn() == "false") {
-    echo json_encode(["loggedin" => "false"]);
+    $json = ["loggedin" => "false"];
 } else {
-    echo json_encode(["loggedin" => "true"]);
+    $json = ["loggedin" => "true"];
 }
+
+if (checkPermissions($_SESSION['id']) == "false") {
+    $json += ["isadmin" => "false"];
+} else {
+    $json += ["isadmin" => "true"];
+}
+
+echo json_encode($json);
